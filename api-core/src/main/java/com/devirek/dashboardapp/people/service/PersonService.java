@@ -10,7 +10,8 @@ import src.main.java.com.devirek.dashboardapp.common.CreateEntityException;
 import src.main.java.com.devirek.dashboardapp.people.model.Person;
 import src.main.java.com.devirek.dashboardapp.people.model.dto.PersonDto;
 import src.main.java.com.devirek.dashboardapp.people.model.dto.PersonWithTeamsDto;
-import src.main.java.com.devirek.dashboardapp.people.repository.PersonRepository;
+import src.main.java.com.devirek.dashboardapp.people.repository.IPersonRepository;
+import src.main.java.com.devirek.dashboardapp.teams.model.dto.TeamDto;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -19,17 +20,17 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * PersonService class for managing {@link PersonRepository}
+ * PersonService class for managing {@link IPersonRepository}
  */
 @Service
 @Transactional
 public class PersonService {
 
-    private final PersonRepository personRepository;
+    private final IPersonRepository personRepository;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public PersonService(PersonRepository personRepository, ModelMapper modelMapper) {
+    public PersonService(IPersonRepository personRepository, ModelMapper modelMapper) {
         this.personRepository = personRepository;
         this.modelMapper = modelMapper;
     }

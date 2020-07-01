@@ -9,6 +9,6 @@ import src.main.java.com.devirek.dashboardapp.teams.model.Team;
  * Teams repository class
  */
 @Repository
-public interface TeamRepository extends JpaRepository<Team, Long> {
+public interface ITeamRepository extends JpaRepository<Team, Long> {
 
 }

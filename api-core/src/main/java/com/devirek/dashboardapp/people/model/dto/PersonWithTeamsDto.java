@@ -1,7 +1,10 @@
 package src.main.java.com.devirek.dashboardapp.people.model.dto;
 
 
+import src.main.java.com.devirek.dashboardapp.teams.model.dto.TeamDto;
+
 import java.io.Serializable;
+import java.util.Set;
 
 
 /**

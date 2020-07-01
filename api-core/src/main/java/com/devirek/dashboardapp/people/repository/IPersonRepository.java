@@ -12,7 +12,7 @@ import java.util.List;
  * PersonRepository class as data storage layer
  */
 @Repository
-public interface PersonRepository extends JpaRepository<Person, Long> {
+public interface IPersonRepository extends JpaRepository<Person, Long> {
 
     @Query(value = "SELECT * FROM PERSON WHERE PERSON.ID NOT IN ( SELECT PERSON_ID  FROM PERSONS_TEAMS  )", nativeQuery = true)
     List<Person> findAllNotAssignedPeople();

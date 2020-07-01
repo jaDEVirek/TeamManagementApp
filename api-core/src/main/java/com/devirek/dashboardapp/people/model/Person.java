@@ -1,6 +1,8 @@
 package src.main.java.com.devirek.dashboardapp.people.model;
 
 
+import src.main.java.com.devirek.dashboardapp.teams.model.Team;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;

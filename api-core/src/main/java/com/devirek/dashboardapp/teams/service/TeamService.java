@@ -9,10 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import src.main.java.com.devirek.dashboardapp.common.CreateEntityException;
 import src.main.java.com.devirek.dashboardapp.common.NoEntityFoundException;
 import src.main.java.com.devirek.dashboardapp.people.model.Person;
-import src.main.java.com.devirek.dashboardapp.people.repository.PersonRepository;
+import src.main.java.com.devirek.dashboardapp.people.repository.IPersonRepository;
 import src.main.java.com.devirek.dashboardapp.teams.model.Team;
 import src.main.java.com.devirek.dashboardapp.teams.model.dto.TeamDto;
-import src.main.java.com.devirek.dashboardapp.teams.repository.TeamRepository;
+import src.main.java.com.devirek.dashboardapp.teams.repository.ITeamRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,12 +23,12 @@ import java.util.Optional;
 @Service
 public class TeamService {
 
-    private final TeamRepository teamRepository;
+    private final ITeamRepository teamRepository;
     private final ModelMapper modelMapper;
-    PersonRepository personRepository;
+    IPersonRepository personRepository;
 
     @Autowired
-    public TeamService(TeamRepository teamRepository, PersonRepository personRepository, ModelMapper modelMapper) {
+    public TeamService(ITeamRepository teamRepository, IPersonRepository personRepository, ModelMapper modelMapper) {
         this.teamRepository = teamRepository;
         this.modelMapper = modelMapper;
         this.personRepository = personRepository;
