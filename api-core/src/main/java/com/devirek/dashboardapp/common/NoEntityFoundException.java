@@ -6,22 +6,18 @@ package src.main.java.com.devirek.dashboardapp.common;
 public class NoEntityFoundException extends RuntimeException {
 
     public NoEntityFoundException() {
-
         super("There is no Entity in database with given id.");
     }
 
     public NoEntityFoundException(String message) {
-
         super(message);
     }
 
     public NoEntityFoundException(String message, Throwable cause) {
-
         super(message, cause);
     }
 
     public NoEntityFoundException(Throwable cause) {
-
         super(cause);
     }
 
