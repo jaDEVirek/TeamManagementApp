@@ -13,10 +13,10 @@ import java.util.List;
  */
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
-	
-	@Query(value = "SELECT * FROM PERSON WHERE PERSON.ID NOT IN ( SELECT PERSON_ID  FROM PERSONS_TEAMS  )", nativeQuery = true)
-	List<Person> findAllNotAssignedPeople();
-	
-	List<Person> findByTeamsNotEmpty();
-	
+
+    @Query(value = "SELECT * FROM PERSON WHERE PERSON.ID NOT IN ( SELECT PERSON_ID  FROM PERSONS_TEAMS  )", nativeQuery = true)
+    List<Person> findAllNotAssignedPeople();
+
+    List<Person> findByTeamsNotEmpty();
+
 }
