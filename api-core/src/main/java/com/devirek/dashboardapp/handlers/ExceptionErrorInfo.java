@@ -1,4 +1,4 @@
-package com.devirek.dashboardapp.handlers;
+package src.main.java.com.devirek.dashboardapp.handlers;
 
 /**
  * ExceptionErrorInfo immutable class is used to holding output information about an Error
