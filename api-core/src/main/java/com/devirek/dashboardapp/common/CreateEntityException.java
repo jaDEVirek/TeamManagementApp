@@ -1,4 +1,4 @@
-package com.devirek.dashboardapp.common;
+package src.main.java.com.devirek.dashboardapp.common;
 
 /**
  * Class for handling exception on creating team data

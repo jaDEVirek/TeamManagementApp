@@ -1,6 +1,6 @@
-package com.devirek.dashboardapp;
+package src.test.java.com.devirek.dashboardapp;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest

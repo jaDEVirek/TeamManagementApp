@@ -1,8 +1,5 @@
-package com.devirek.dashboardapp.handlers;
+package src.main.java.com.devirek.dashboardapp.handlers;
 
-
-import com.devirek.dashboardapp.common.CreateEntityException;
-import com.devirek.dashboardapp.common.NoEntityFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +7,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import src.main.java.com.devirek.dashboardapp.common.CreateEntityException;
+import src.main.java.com.devirek.dashboardapp.common.NoEntityFoundException;
 
 /**
  * GlobalExceptionHandler class

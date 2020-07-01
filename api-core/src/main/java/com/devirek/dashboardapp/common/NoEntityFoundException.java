@@ -1,4 +1,4 @@
-package com.devirek.dashboardapp.common;
+package src.main.java.com.devirek.dashboardapp.common;
 
 /**
  * This class is used to handle own Exception of the lack of entity in the database
