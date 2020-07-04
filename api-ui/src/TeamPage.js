@@ -12,7 +12,7 @@ import {BreakpointsOptions as spacing} from "@material-ui/core/styles/createBrea
 
 {/*
    @author Wiktor Religo
- * @since 21.05.2018*/
+ */
 }
 
 class TeamPage extends React.Component {

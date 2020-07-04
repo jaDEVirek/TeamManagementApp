@@ -7,14 +7,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
-import Save from "@material-ui/icons/es/Save";
-import Delete from "@material-ui/icons/es/Delete";
-import {dataTable2, globalFetchData} from "NextPersonTable";
+import {Delete, Save} from "@material-ui/icons";
 
 
 {/*
    @author Wiktor Religo
- * @since 01.06.2018*/
+*/
 }
 
 
@@ -24,7 +22,7 @@ class DialogPanel extends React.Component {
         this.state = {
             open: false,
             name: '',
-            lastname: '',
+            lastName: '',
             location: '',
             email: '',
             status: '',
@@ -34,7 +32,7 @@ class DialogPanel extends React.Component {
             this.setState({
                 open: true,
                 name: '',
-                lastname: '',
+                lastName: '',
                 location: '',
                 email: '',
                 status: '',

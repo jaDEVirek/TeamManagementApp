@@ -4,7 +4,7 @@ import HomeIcon from '@material-ui/icons/Home';
 
 {/*
    @author Wiktor Religo
- * @since 08.06.2018*/
+ */
 }
 
 class Home extends React.Component {
