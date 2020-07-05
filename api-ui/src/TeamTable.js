@@ -6,19 +6,18 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import {BreakpointsOptions as spacing} from "@material-ui/core/styles/createBreakpoints";
+import {spacing} from "@material-ui/system";
 
 
-
-{/*
+/*
    @author Wiktor Religo
  */
-}
+
 
 const tableStyle = {
     root: {
         width: '100%',
-        marginTop: spacing.unit * 3,
+        marginTop: spacing * 3,
         overflowX: 'auto',
     },
     table: {

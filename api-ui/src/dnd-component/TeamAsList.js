@@ -4,17 +4,17 @@ import DragCard from "./DragCard";
 
 const update = require('immutability-helper')
 
-{/*
+/*
    @author Wiktor Religo
  */
-}
+
 
 export class TeamAsList extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            cards: props.list,                                              
+            cards: props.list,
         };
     }
 

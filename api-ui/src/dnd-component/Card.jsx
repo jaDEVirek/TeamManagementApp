@@ -14,10 +14,10 @@ import PageviewIcon from '@material-ui/icons/Pageview';
 import Popup from "reactjs-popup";
 
 
-{/*
+/*
    @author Wiktor Religo
  */
-}
+
 const styles = theme => ({
     card: {
         display: 'flex',

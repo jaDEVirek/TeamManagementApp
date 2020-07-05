@@ -2,10 +2,10 @@ import React from 'react';
 import {NavigationMenu} from "./TeamPage.js";
 import HomeIcon from '@material-ui/icons/Home';
 
-{/*
+/*
    @author Wiktor Religo
  */
-}
+
 
 class Home extends React.Component {
     constructor() {

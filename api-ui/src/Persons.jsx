@@ -4,10 +4,10 @@ import DialogPanel from "./DialogPanel";
 import {NavigationMenu} from "./TeamPage.js";
 
 
-{/*
+/*
    @author Wiktor Religo 
 */
-}
+
 
 class Persons extends React.Component {
 
@@ -31,5 +31,6 @@ class Persons extends React.Component {
         );
     }
 }
+
 export default Persons;
 

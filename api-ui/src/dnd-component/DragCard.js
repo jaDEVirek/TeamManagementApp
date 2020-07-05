@@ -4,10 +4,9 @@ import {DragSource, DropTarget} from 'react-dnd';
 import flow from 'lodash/flow';
 import Card from "./Card.jsx";
 
-{/*
+/*
    @author Wiktor Religo
  */
-}
 
 
 class DragCard extends Component {

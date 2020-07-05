@@ -8,12 +8,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import TeamDialog from "./TeamDialog";
 import {Link,} from 'react-router-dom';
-import {BreakpointsOptions as spacing} from "@material-ui/core/styles/createBreakpoints";
+import {spacing} from "@material-ui/system";
 
-{/*
+/*
    @author Wiktor Religo
  */
-}
+
 
 class TeamPage extends React.Component {
 
@@ -60,12 +60,20 @@ export const NavigationMenu = () => {
                         <Link style={pageStyle.link} to="/manage">Manage</Link></Button>
                     <Link style={pageStyle.link} to="/teams">
                         <Button color="inherit"
-                                style={{marginLeft: '50px', backgroundColor: 'rgb(220, 20, 60,0.8)', letterSpacing: 1.5}}> show
+                                style={{
+                                    marginLeft: '50px',
+                                    backgroundColor: 'rgb(220, 20, 60,0.8)',
+                                    letterSpacing: 1.5
+                                }}> show
                             show TeamTable </Button>
                     </Link>
                     <Link style={pageStyle.link} to="/persons">
                         <Button color="inherit"
-                                style={{marginLeft: '50px', backgroundColor: 'rgb(220, 20, 60,0.8)', letterSpacing: 1.5}}> show
+                                style={{
+                                    marginLeft: '50px',
+                                    backgroundColor: 'rgb(220, 20, 60,0.8)',
+                                    letterSpacing: 1.5
+                                }}> show
                             PersonTable </Button>
                     </Link>
                 </Toolbar>
@@ -90,7 +98,7 @@ export const pageStyle = {
         marginRight: 20,
     },
     button: {
-        margin: spacing.unit,
+        margin: spacing,
     },
     link: {
         textDecoration: 'none',

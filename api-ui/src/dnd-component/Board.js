@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import TeamAsList from './TeamAsList.js';
-import {DragDropContext} from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
+import {DndProvider} from 'react-dnd';
+import {HTML5Backend} from 'react-dnd-html5-backend';
 
 
-{/*
+/*
    @author Wiktor Religo
  */
-}
+
 
 class Board extends Component {
 
@@ -81,17 +81,19 @@ class Board extends Component {
         ];
 
         return (
-            <div style={style.board}>
-                {this.state.teamStore.map(n => {
-                    return (
-                        <TeamAsList teamName={"Ninjas"} id={n.id} list={listOne}/>
-                    )
-                })
-                }
-                <TeamAsList teamName={"No Membered "} id={(this.state.teamStore.length + 1)} list={listOne}/>
-            </div>
+            <DndProvider backend={HTML5Backend}>
+                <div style={style.board}>
+                    {this.state.teamStore.map(n => {
+                        return (
+                            <TeamAsList teamName={"Ninjas"} id={n.id} list={listOne}/>
+                        )
+                    })
+                    }
+                    <TeamAsList teamName={"No Membered "} id={(this.state.teamStore.length + 1)} list={listOne}/>
+                </div>
+            </DndProvider>
         );
     }
 }
 
-export default DragDropContext(HTML5Backend)(Board);
+export default Board;

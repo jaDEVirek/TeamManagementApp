@@ -10,10 +10,9 @@ import AddIcon from '@material-ui/icons/Add';
 import {Delete, Save} from "@material-ui/icons";
 
 
-{/*
+/*
    @author Wiktor Religo
 */
-}
 
 
 class DialogPanel extends React.Component {

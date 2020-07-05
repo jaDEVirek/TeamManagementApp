@@ -9,10 +9,10 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import {createData} from "./TeamTable";
 import {Delete, Save} from "@material-ui/icons";
 
-{/*
+/*
    @author Wiktor Religo
 */
-}
+
 
 class TeamDialog extends React.Component {
     constructor() {

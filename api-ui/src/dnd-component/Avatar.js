@@ -4,10 +4,10 @@ import {withStyles} from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 
 
-{/*
+/*
    @author Wiktor Religo
- */
-}
+    */
+
 const styles = {
     row: {
         justifyContent: 'center',
