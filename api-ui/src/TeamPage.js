@@ -1,6 +1,6 @@
 import React from 'react';
 import TeamTable from './TeamTable.js';
-import {AppBar} from '@material-ui/core/';
+import AppBar from '@material-ui/core/';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
