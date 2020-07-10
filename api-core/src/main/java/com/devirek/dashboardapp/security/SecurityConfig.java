@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import src.main.java.com.devirek.dashboardapp.security.jwtauth.AuthTokenFilter;
 import src.main.java.com.devirek.dashboardapp.security.service.UserDetailsServiceImpl;
 
 @Configuration
@@ -15,7 +16,7 @@ import src.main.java.com.devirek.dashboardapp.security.service.UserDetailsServic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    private final UserDetailsServiceImpl userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
     public SecurityConfig(UserDetailsServiceImpl userDetailsService) {
@@ -29,8 +30,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    protected PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
+    @Bean
+    public AuthTokenFilter authenticationJwtTokenFilter() {
+        return new AuthTokenFilter();
+    }
 }
