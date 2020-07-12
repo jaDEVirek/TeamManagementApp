@@ -3,7 +3,9 @@ package src.main.java.com.devirek.dashboardapp.security.jwtauth;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import src.main.java.com.devirek.dashboardapp.security.service.UserDetailsServiceImpl;
@@ -49,14 +51,21 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             if (Optional.ofNullable(jWebToken)
                         .isPresent() && jwtUtils.validateJwtToken(jWebToken)) {
                 UserDetails userDetails = userDetailsService.loadUserByUsername(jwtUtils.getUserNameFromJWT(jWebToken));
-
+                setAuthenticationByUserDetails(request, userDetails);
             }
+            filterChain.doFilter(request, response);
 
         } catch (Exception e) {
             logger.error("Cannot set user authentication: {}", e);
         }
+    }
 
+    private void setAuthenticationByUserDetails(HttpServletRequest request, UserDetails userDetails) {
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails,
+                                                                                                          null,
+                                                                                                          userDetails.getAuthorities());
 
+        authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
     }
 
     private String parseJwt(HttpServletRequest request) {
