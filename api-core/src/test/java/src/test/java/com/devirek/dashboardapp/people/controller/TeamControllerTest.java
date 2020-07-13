@@ -1,4 +1,4 @@
-package src.test.java.com.devirek.dashboardapp.people.controller;
+package java.src.test.java.com.devirek.dashboardapp.people.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -23,8 +23,6 @@ import src.main.java.com.devirek.dashboardapp.teams.service.TeamService;
 import java.util.Collections;
 import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
