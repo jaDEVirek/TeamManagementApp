@@ -1,4 +1,4 @@
-package src.test.java.com.devirek.dashboardapp;
+package java.src.test.java.com.devirek.dashboardapp;
 
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
