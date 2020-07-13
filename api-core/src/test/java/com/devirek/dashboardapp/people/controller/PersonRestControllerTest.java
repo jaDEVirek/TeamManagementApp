@@ -1,4 +1,4 @@
-package java.src.test.java.com.devirek.dashboardapp.people.controller;
+package src.test.java.com.devirek.dashboardapp.people.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;

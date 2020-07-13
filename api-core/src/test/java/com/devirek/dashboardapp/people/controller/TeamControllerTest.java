@@ -1,4 +1,4 @@
-package java.src.test.java.com.devirek.dashboardapp.people.controller;
+package src.test.java.com.devirek.dashboardapp.people.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class TeamControllerTest {
 
-    private ObjectMapper mappingObject = new ObjectMapper();
+    private final ObjectMapper mappingObject = new ObjectMapper();
     private MockMvc mockMvc;
     @Mock
     private TeamService teamService;

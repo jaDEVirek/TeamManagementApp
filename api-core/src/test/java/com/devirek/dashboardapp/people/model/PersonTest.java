@@ -1,4 +1,4 @@
-package java.src.test.java.com.devirek.dashboardapp.people.model;
+package src.test.java.com.devirek.dashboardapp.people.model;
 
 import org.junit.BeforeClass;
 import org.junit.Test;

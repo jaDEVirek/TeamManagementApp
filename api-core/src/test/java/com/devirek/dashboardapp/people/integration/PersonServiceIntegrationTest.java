@@ -1,4 +1,4 @@
-package java.src.test.java.com.devirek.dashboardapp.people.integration;
+package src.test.java.com.devirek.dashboardapp.people.integration;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

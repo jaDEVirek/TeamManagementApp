@@ -1,4 +1,4 @@
-package java.src.test.java.com.devirek.dashboardapp.people.service;
+package src.test.java.com.devirek.dashboardapp.people.service;
 
 
 import org.junit.Before;
