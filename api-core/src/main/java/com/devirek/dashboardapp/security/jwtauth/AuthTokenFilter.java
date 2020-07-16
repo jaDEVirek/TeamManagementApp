@@ -49,11 +49,12 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
         try {
 
-            String jWebToken = parseJwt(request).get();
+            Optional<String> jWebToken = parseJwt(request);
 
             if (Optional.ofNullable(jWebToken)
-                        .isPresent() && jwtUtils.validateJwtToken(jWebToken)) {
-                UserDetails userDetails = userDetailsService.loadUserByUsername(jwtUtils.getUserNameFromJWT(jWebToken));
+                        .isPresent() && jwtUtils.validateJwtToken(jWebToken.get())) {
+                UserDetails userDetails = userDetailsService.loadUserByUsername(
+                        jwtUtils.getUserNameFromToken(jWebToken.get()));
                 setAuthenticationByUserDetails(request, userDetails);
             }
 
