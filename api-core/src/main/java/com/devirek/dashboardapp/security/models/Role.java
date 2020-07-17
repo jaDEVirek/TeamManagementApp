@@ -9,5 +9,26 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private EnumRole roleName;
 
+    public Role() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public EnumRole getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(EnumRole roleName) {
+        this.roleName = roleName;
+    }
 }
