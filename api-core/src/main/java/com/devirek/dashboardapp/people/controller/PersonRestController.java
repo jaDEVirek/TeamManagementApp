@@ -46,9 +46,9 @@ public class PersonRestController {
     @GetMapping(value = "/people/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<PersonDto> getPersonById(@PathVariable long id) {
         return personService.findById(id)
-                            .map(ResponseEntity::ok)
-                            .orElse(ResponseEntity.notFound()
-                                                  .build());
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound()
+                        .build());
     }
 
     /**
@@ -63,10 +63,10 @@ public class PersonRestController {
         try {
             personService.updatePersonById(id, personDto);
             return ResponseEntity.ok()
-                                 .build();
+                    .build();
         } catch (Exception e) {
             return ResponseEntity.notFound()
-                                 .build();
+                    .build();
         }
     }
 
@@ -81,9 +81,9 @@ public class PersonRestController {
     @CrossOrigin
     public ResponseEntity<PersonDto> deletePerson(@PathVariable Long id) {
         return personService.deletePerson(id)
-                            .map(ResponseEntity::ok)
-                            .orElse(ResponseEntity.notFound()
-                                                  .build());
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound()
+                        .build());
     }
 
     /**
