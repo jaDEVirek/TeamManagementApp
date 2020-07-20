@@ -10,6 +10,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+import src.main.java.com.devirek.dashboardapp.security.repository.IUserRepository;
 import src.main.java.com.devirek.dashboardapp.security.service.UserDetailsServiceImpl;
 import src.main.java.com.devirek.dashboardapp.utility.JWTUtils;
 
@@ -31,17 +32,26 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
     private UserDetailsServiceImpl userDetailsService;
 
+    private IUserRepository userRepository;
+
+
     @Autowired
     public AuthTokenFilter(JWTUtils jwtUtils, UserDetailsServiceImpl userDetailsService) {
         this.jwtUtils = jwtUtils;
         this.userDetailsService = userDetailsService;
     }
 
+
     public AuthTokenFilter() {
         if (Objects.isNull(userDetailsService) || Objects.isNull(jwtUtils)) {
-            userDetailsService = new UserDetailsServiceImpl();
+            userDetailsService = new UserDetailsServiceImpl(userRepository);
             jwtUtils = new JWTUtils();
         }
+    }
+
+    @Autowired
+    private void setUserRepository(IUserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -52,7 +62,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             Optional<String> jWebToken = parseJwt(request);
 
             if (Optional.ofNullable(jWebToken)
-                        .isPresent() && jwtUtils.validateJwtToken(jWebToken.get())) {
+                    .isPresent() && jwtUtils.validateJwtToken(jWebToken.get())) {
                 UserDetails userDetails = userDetailsService.loadUserByUsername(
                         jwtUtils.getUserNameFromToken(jWebToken.get()));
                 setAuthenticationByUserDetails(request, userDetails);
@@ -66,11 +76,11 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
     private void setAuthenticationByUserDetails(HttpServletRequest request, UserDetails userDetails) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails,
-                                                                                                          null,
-                                                                                                          userDetails.getAuthorities());
+                null,
+                userDetails.getAuthorities());
         authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext()
-                             .setAuthentication(authenticationToken);
+                .setAuthentication(authenticationToken);
     }
 
     /**
