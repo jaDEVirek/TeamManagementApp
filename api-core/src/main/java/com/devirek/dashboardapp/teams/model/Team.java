@@ -153,9 +153,9 @@ public class Team {
         if (o == null || getClass() != o.getClass()) return false;
         Team team = (Team) o;
         return Objects.equals(id, team.id) && Objects.equals(version, team.version) && Objects.equals(name,
-                                                                                                      team.name) && Objects.equals(
+                team.name) && Objects.equals(
                 description, team.description) && Objects.equals(city, team.city) && Objects.equals(headcount,
-                                                                                                    team.headcount) && Objects.equals(
+                team.headcount) && Objects.equals(
                 createdOn, team.createdOn) && Objects.equals(modifiedOn, team.modifiedOn);
     }
 
