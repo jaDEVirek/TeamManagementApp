@@ -47,7 +47,7 @@ public class TeamServiceIntegrationTest {
         // Given
         TeamDto teamDto = new TeamDto(11l, "Janek", "local", "wawa", 6);
         PersonDto personDto = new PersonDto(12l, "janek", "mucha", "email1@onet.com", "krakow", "Programing",
-                                            "Developer");
+                "Developer");
         TeamDto team = teamService.createTeam(teamDto);
         PersonDto person = personService.addPerson(personDto);
 
@@ -61,11 +61,11 @@ public class TeamServiceIntegrationTest {
         Optional<Team> teamFromService = teamService.findTeamEntityById(team.getId());
         assertThat(teamFromService.isPresent()).isTrue();
         Set<Person> persons = teamFromService.get()
-                                             .getPersons();
+                .getPersons();
         assertThat(persons).hasSize(1);
         assertThat(persons.stream()
-                          .filter(person1 -> person1.getId() == personId)
-                          .findAny()).isPresent();
+                .filter(person1 -> person1.getId() == personId)
+                .findAny()).isPresent();
     }
 
 }

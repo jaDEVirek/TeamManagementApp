@@ -47,7 +47,7 @@ public class TeamController {
     public ResponseEntity<?> updateById(@PathVariable(value = "id") Long id, @RequestBody TeamDto teamDto) {
         teamService.updateTeamById(id, teamDto);
         return ResponseEntity.ok()
-                             .build();
+                .build();
     }
 
     /**
@@ -59,8 +59,8 @@ public class TeamController {
     @GetMapping("teams/{id}")
     public ResponseEntity<TeamDto> findById(@PathVariable Long id) {
         return teamService.findTeamById(id)
-                          .map(ResponseEntity::ok)
-                          .orElseThrow(() -> new IllegalArgumentException("There is no Team with given ID"));
+                .map(ResponseEntity::ok)
+                .orElseThrow(() -> new IllegalArgumentException("There is no Team with given ID"));
     }
 
     /**
@@ -74,7 +74,7 @@ public class TeamController {
     public ResponseEntity<?> deleteById(@PathVariable Long id) {
         teamService.deleteTeamById(id);
         return ResponseEntity.ok()
-                             .build();
+                .build();
     }
 
     /**

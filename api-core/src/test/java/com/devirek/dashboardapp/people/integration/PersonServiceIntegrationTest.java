@@ -57,9 +57,9 @@ public class PersonServiceIntegrationTest {
         // when
 
         boolean resultOfAddingP1 = teamService.addPersonsToTeams(team.getId(), personDtoList.get(0)
-                                                                                            .getId());
+                .getId());
         boolean resultOfAddingP2 = teamService.addPersonsToTeams(team.getId(), personDtoList.get(1)
-                                                                                            .getId());
+                .getId());
 
         // extract the people resource
         List<PersonDto> notAssignedPeople = personService.findNotAssignedPeople();
@@ -89,9 +89,9 @@ public class PersonServiceIntegrationTest {
     private List<PersonDto> returnPersonTestResource() {
         PersonDto p1 = new PersonDto(null, "Janek", "Bucha", "email1@onet.com", "krakow", "Programing", "Developer");
         PersonDto p2 = new PersonDto(null, "Tomasz", "Nieprzydzielony", "email2@onet.com", "krakow", "Programing",
-                                     "Developer");
+                "Developer");
         PersonDto p3 = new PersonDto(null, "Genowefa", "Przydzielona", "email22@onet.com", "krakow", "UI-Design",
-                                     "Developer");
+                "Developer");
         return Arrays.asList(p1, p2, p3);
     }
 }

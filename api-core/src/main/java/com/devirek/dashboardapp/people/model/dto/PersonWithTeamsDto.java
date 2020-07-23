@@ -25,7 +25,7 @@ public class PersonWithTeamsDto implements Serializable {
     }
 
     public PersonWithTeamsDto(Long id, String firstName, String lastName, String email, String location, String status,
-                              String role) {
+            String role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

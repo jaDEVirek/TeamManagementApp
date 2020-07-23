@@ -34,15 +34,15 @@ import java.util.stream.Collectors;
 @RequestMapping("/auth")
 public class AuthController {
 
-    private IUserRepository userRepository;
+    private final IUserRepository userRepository;
 
-    private IRoleRepository roleRepository;
+    private final IRoleRepository roleRepository;
 
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    private JWTUtils jwtUtils;
+    private final JWTUtils jwtUtils;
 
     @Autowired
     public AuthController(IUserRepository userRepository,
@@ -72,7 +72,7 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> registerNewUser(@Valid @RequestBody SignUpRequest signUpRequest) {
 
-        if (userRepository.existsByUsername(signUpRequest.getUserName())) {
+        if (userRepository.existsByUserName(signUpRequest.getUserName())) {
             return ResponseEntity.badRequest()
                     .body(new PayloadResponse("Error: Email is already in use!"));
         } else if (userRepository.existsByEmail(signUpRequest.getEmail())) {
@@ -110,7 +110,7 @@ public class AuthController {
     }
 
     private Role findRoleByType(EnumRole enumRole) throws RuntimeException {
-        return roleRepository.findByName(enumRole)
+        return roleRepository.findByRoleName(enumRole)
                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
     }
 

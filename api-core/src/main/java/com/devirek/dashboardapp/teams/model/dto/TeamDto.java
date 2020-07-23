@@ -79,7 +79,7 @@ public class TeamDto implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         TeamDto teamDto = (TeamDto) o;
         return Objects.equals(id, teamDto.id) && Objects.equals(name, teamDto.name) && Objects.equals(description,
-                                                                                                      teamDto.description) && Objects.equals(
+                teamDto.description) && Objects.equals(
                 city, teamDto.city) && Objects.equals(headcount, teamDto.headcount);
     }
 

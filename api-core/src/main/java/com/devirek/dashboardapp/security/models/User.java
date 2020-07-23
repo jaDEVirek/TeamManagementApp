@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"userName", "email"}))
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = {"userName", "email"}))
 public class User {
 
     @Id

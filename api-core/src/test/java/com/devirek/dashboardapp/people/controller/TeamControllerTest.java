@@ -45,8 +45,8 @@ public class TeamControllerTest {
     @Before
     public void initTest() {
         mockMvc = MockMvcBuilders.standaloneSetup(new TeamController(teamService, personService))
-                                 .setControllerAdvice(GlobalExceptionHandler.class)
-                                 .build();
+                .setControllerAdvice(GlobalExceptionHandler.class)
+                .build();
     }
 
     @Test
@@ -55,13 +55,13 @@ public class TeamControllerTest {
         when(teamService.findAll()).thenReturn(Collections.singletonList(teamDto));
 
         mockMvc.perform(get("/teams"))
-               .andExpect(status().isOk())
-               .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-               .andExpect(jsonPath("$[0].id").value(teamDto.getId()))
-               .andExpect(jsonPath("$[0].name").value(teamDto.getName()))
-               .andExpect(jsonPath("$[0].description").value(teamDto.getDescription()))
-               .andExpect(jsonPath("$[0].city").value(teamDto.getCity()))
-               .andExpect(jsonPath("$[0].headcount").value(teamDto.getHeadcount()));
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$[0].id").value(teamDto.getId()))
+                .andExpect(jsonPath("$[0].name").value(teamDto.getName()))
+                .andExpect(jsonPath("$[0].description").value(teamDto.getDescription()))
+                .andExpect(jsonPath("$[0].city").value(teamDto.getCity()))
+                .andExpect(jsonPath("$[0].headcount").value(teamDto.getHeadcount()));
 
     }
 
@@ -71,56 +71,56 @@ public class TeamControllerTest {
         when(teamService.findTeamById(1l)).thenReturn(Optional.of(team));
 
         mockMvc.perform(get("/teams/" + 1))
-               .andExpect(status().isOk())
-               .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-               .andExpect(jsonPath("$.id").value(team.getId()));
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$.id").value(team.getId()));
     }
 
     @Test
     public void shouldNotGetTeamByIdFromPath() throws Exception {
         doThrow(new IllegalArgumentException()).when(teamService)
-                                               .findTeamById(null);
+                .findTeamById(null);
 
         mockMvc.perform(get("/teams/" + 1))
-               .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound());
     }
 
     @Test
     public void shouldUpdateTeamByPutRequest() throws Exception {
         TeamDto team = prepareTeamDto();
         mockMvc.perform(put("/teams/{id}", 2l).contentType(MediaType.APPLICATION_JSON)
-                                              .content(mappingObject.valueToTree(team)
-                                                                    .toString()))
-               .andExpect(status().isOk());
+                .content(mappingObject.valueToTree(team)
+                        .toString()))
+                .andExpect(status().isOk());
     }
 
     @Test
     public void shouldNotUpdateTeamByPutRequest() throws Exception {
         TeamDto team = prepareTeamDto();
         doThrow(new NoEntityFoundException()).when(teamService)
-                                             .updateTeamById(1l, team);
+                .updateTeamById(1l, team);
 
         mockMvc.perform(put("/teams/{id}", 1).contentType(MediaType.APPLICATION_JSON)
-                                             .content(mappingObject.valueToTree(team)
-                                                                   .toString()))
-               .andExpect(status().isBadRequest());
+                .content(mappingObject.valueToTree(team)
+                        .toString()))
+                .andExpect(status().isBadRequest());
     }
 
     @Test
     public void shouldDeleteTeamByGivenId() throws Exception {
         doNothing().when(teamService)
-                   .deleteTeamById(isA(Long.class));
+                .deleteTeamById(isA(Long.class));
         mockMvc.perform(delete("/teams/{id}", 1))
-               .andExpect(status().isOk());
+                .andExpect(status().isOk());
     }
 
     @Test
     public void shouldNotDeleteTeamByGivenId() throws Exception {
         doThrow(new IllegalStateException()).when(teamService)
-                                            .deleteTeamById(1l);
+                .deleteTeamById(1l);
 
         mockMvc.perform(delete("/teams/{id}", 1))
-               .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound());
     }
 
     @Test
@@ -128,12 +128,12 @@ public class TeamControllerTest {
         TeamDto teamDto = prepareTeamDto();
 
         doReturn(new ModelMapper().map(teamDto, TeamDto.class)).when(teamService)
-                                                               .createTeam(teamDto);
+                .createTeam(teamDto);
 
         mockMvc.perform(post("/teams").contentType(MediaType.APPLICATION_JSON)
-                                      .content(mappingObject.valueToTree(teamDto)
-                                                            .toString()))
-               .andExpect(status().isOk());
+                .content(mappingObject.valueToTree(teamDto)
+                        .toString()))
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -144,9 +144,9 @@ public class TeamControllerTest {
         teamService.createTeam(any());
 
         mockMvc.perform(post("/teams").contentType(MediaType.APPLICATION_JSON)
-                                      .content(mappingObject.valueToTree(teamDto)
-                                                            .toString()))
-               .andReturn();
+                .content(mappingObject.valueToTree(teamDto)
+                        .toString()))
+                .andReturn();
     }
 
     @Test
@@ -159,7 +159,7 @@ public class TeamControllerTest {
         when(personService.addPerson(personDto)).thenReturn(new PersonDto());
         // Then
         mockMvc.perform(post("/addPeopleToTeams/{teamId}/{personId}", 1, 1))
-               .andExpect(status().isOk());
+                .andExpect(status().isOk());
 
     }
 

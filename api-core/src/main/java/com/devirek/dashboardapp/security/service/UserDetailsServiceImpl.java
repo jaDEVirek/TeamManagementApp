@@ -12,7 +12,7 @@ import src.main.java.com.devirek.dashboardapp.security.repository.IUserRepositor
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private IUserRepository userRepository;
+    private final IUserRepository userRepository;
 
     @Autowired
     public UserDetailsServiceImpl(IUserRepository userRepository) {
@@ -21,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        return UserDetailsImpl.build(userRepository.findByUsername(userName)
+        return UserDetailsImpl.build(userRepository.findByUserName(userName)
                 .orElseThrow(() -> new UsernameNotFoundException("User with name: " + userName + " not found!")));
     }
 }
