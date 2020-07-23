@@ -42,7 +42,9 @@ public class Team {
     private LocalDateTime modifiedOn;
 
     @ManyToMany
-    @JoinTable(name = "PERSONS_TEAMS", joinColumns = {@JoinColumn(name = "team_id", referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "person_id", referencedColumnName = "id")})
+    @JoinTable(name = "PERSONS_TEAMS",
+               joinColumns = {@JoinColumn(name = "team_id", referencedColumnName = "id")},
+               inverseJoinColumns = {@JoinColumn(name = "person_id", referencedColumnName = "id")})
     private Set<Person> persons = new HashSet<>();
 
     /**
@@ -152,10 +154,12 @@ public class Team {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Team team = (Team) o;
-        return Objects.equals(id, team.id) && Objects.equals(version, team.version) && Objects.equals(name,
-                team.name) && Objects.equals(
-                description, team.description) && Objects.equals(city, team.city) && Objects.equals(headcount,
-                team.headcount) && Objects.equals(
+        return Objects.equals(id, team.id) && Objects.equals(version, team.version) && Objects
+                .equals(name,
+                        team.name) && Objects.equals(
+                description, team.description) && Objects.equals(city, team.city) && Objects
+                .equals(headcount,
+                        team.headcount) && Objects.equals(
                 createdOn, team.createdOn) && Objects.equals(modifiedOn, team.modifiedOn);
     }
 

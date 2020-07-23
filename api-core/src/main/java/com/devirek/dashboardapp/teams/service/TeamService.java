@@ -53,7 +53,7 @@ public class TeamService {
     public Optional<TeamDto> findTeamById(Long id) {
         Assert.notNull(id, "ID must exist ");
         return teamRepository.findById(id)
-                             .map(p -> modelMapper.map(p, TeamDto.class));
+                .map(p -> modelMapper.map(p, TeamDto.class));
     }
 
     /**
@@ -68,16 +68,16 @@ public class TeamService {
         Assert.notNull(teamDto, "Object can't be null!");
         Assert.notNull(teamDto.getId(), "Passing id is required while updating an Object!");
         teamRepository.findById(id)
-                      .map(team -> {
-                          Team teamEntity = teamRepository.getOne(id);
-                          teamEntity.setId(teamDto.getId());
-                          teamEntity.setName(teamDto.getName());
-                          teamEntity.setCity(teamDto.getCity());
-                          teamEntity.setDescription(teamDto.getDescription());
-                          teamEntity.setHeadcount(teamDto.getHeadcount());
-                          return teamRepository.save(teamEntity);
-                      })
-                      .orElseThrow(NoEntityFoundException::new);
+                .map(team -> {
+                    Team teamEntity = teamRepository.getOne(id);
+                    teamEntity.setId(teamDto.getId());
+                    teamEntity.setName(teamDto.getName());
+                    teamEntity.setCity(teamDto.getCity());
+                    teamEntity.setDescription(teamDto.getDescription());
+                    teamEntity.setHeadcount(teamDto.getHeadcount());
+                    return teamRepository.save(teamEntity);
+                })
+                .orElseThrow(NoEntityFoundException::new);
     }
 
     /**
@@ -125,7 +125,7 @@ public class TeamService {
             Person person = personRepository.getOne(personId);
             Team team = teamRepository.getOne(teamId);
             team.getPersons()
-                .add(person);
+                    .add(person);
         } catch (Exception e) {
             throw new CreateEntityException(e);
         }

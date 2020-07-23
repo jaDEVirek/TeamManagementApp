@@ -16,18 +16,18 @@ public class UserDetailsImpl implements UserDetails {
 
     private static final long serialVersionId = 1L;
 
-    private Long id;
+    private final Long id;
 
-    private String email;
+    private final String email;
 
-    private String userName;
+    private final String userName;
     @JsonIgnore
-    private String password;
+    private final String password;
 
-    private Collection<? extends GrantedAuthority> permissionAuthorities;
+    private final Collection<? extends GrantedAuthority> permissionAuthorities;
 
     public UserDetailsImpl(Long id, String email, String userName, String password,
-                           Collection<? extends GrantedAuthority> permissionAuthorities) {
+            Collection<? extends GrantedAuthority> permissionAuthorities) {
         this.id = id;
         this.email = email;
         this.userName = userName;
@@ -77,6 +77,14 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override

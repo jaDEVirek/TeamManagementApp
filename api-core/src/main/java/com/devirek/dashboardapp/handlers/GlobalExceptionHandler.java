@@ -17,27 +17,35 @@ import src.main.java.com.devirek.dashboardapp.common.NoEntityFoundException;
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException ex, WebRequest request) {
+    public ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException ex,
+            WebRequest request) {
 
-        return handleExceptionInternal(ex, new ExceptionErrorInfo(ex.getMessage()), new HttpHeaders(),
-                                       HttpStatus.NOT_FOUND, request);
+        return handleExceptionInternal(ex, new ExceptionErrorInfo(ex.getMessage()),
+                new HttpHeaders(),
+                HttpStatus.NOT_FOUND, request);
     }
 
     @ExceptionHandler(NoEntityFoundException.class)
-    public ResponseEntity<Object> handleNoEntityFoundException(NoEntityFoundException ex, WebRequest request) {
-        return handleExceptionInternal(ex, new ExceptionErrorInfo(ex.getMessage()), new HttpHeaders(),
-                                       HttpStatus.BAD_REQUEST, request);
+    public ResponseEntity<Object> handleNoEntityFoundException(NoEntityFoundException ex,
+            WebRequest request) {
+        return handleExceptionInternal(ex, new ExceptionErrorInfo(ex.getMessage()),
+                new HttpHeaders(),
+                HttpStatus.BAD_REQUEST, request);
     }
 
     @ExceptionHandler(CreateEntityException.class)
-    public ResponseEntity<Object> handleCreateEntityException(CreateEntityException ex, WebRequest request) {
-        return handleExceptionInternal(ex, new ExceptionErrorInfo(ex.getMessage()), new HttpHeaders(),
-                                       HttpStatus.BAD_REQUEST, request);
+    public ResponseEntity<Object> handleCreateEntityException(CreateEntityException ex,
+            WebRequest request) {
+        return handleExceptionInternal(ex, new ExceptionErrorInfo(ex.getMessage()),
+                new HttpHeaders(),
+                HttpStatus.BAD_REQUEST, request);
     }
 
     @ExceptionHandler(IllegalStateException.class)
-    public ResponseEntity<Object> handleIllegalStateException(IllegalStateException ex, WebRequest request) {
-        return handleExceptionInternal(ex, new ExceptionErrorInfo(ex.getMessage()), new HttpHeaders(),
-                                       HttpStatus.NOT_FOUND, request);
+    public ResponseEntity<Object> handleIllegalStateException(IllegalStateException ex,
+            WebRequest request) {
+        return handleExceptionInternal(ex, new ExceptionErrorInfo(ex.getMessage()),
+                new HttpHeaders(),
+                HttpStatus.NOT_FOUND, request);
     }
 }

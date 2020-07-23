@@ -45,7 +45,7 @@ public class PersonServiceTest {
         Person person1 = new Person(1L, "jan", "mucha", "krakow", "email1@onet.com", "Programing", "Developer");
         Person person2 = new Person(1L, "Alicja", "Kowalska", "Warszawa", "email2@gmail.com", "Business", "Designer");
         Mockito.when(personRepository.findAll())
-               .thenReturn(Arrays.asList(person1, person2));
+                .thenReturn(Arrays.asList(person1, person2));
     }
 
     @Test
@@ -59,7 +59,7 @@ public class PersonServiceTest {
     public void shouldReturnNoAssignedPeople() {
         Person person1 = new Person(1L, "jan", "mucha", "warszawa", "email1@onet.com", "Programing", "Developer");
         Mockito.when(personService.findNotAssignedPeople())
-               .thenReturn(Arrays.asList(mapper.map(person1, PersonDto.class)));
+                .thenReturn(Arrays.asList(mapper.map(person1, PersonDto.class)));
 
         List<PersonDto> noAssignedPeople = personService.findNotAssignedPeople();
         assertThat(noAssignedPeople).hasSize(1);
@@ -76,18 +76,18 @@ public class PersonServiceTest {
     public void shouldDeletePersonById() {
         personService.deletePerson(1L);
         Mockito.verify(personRepository, times(1))
-               .deleteById(1l);
+                .deleteById(1l);
     }
 
     @Test
     public void shouldAddPersonToDatabase() {
         Person person1 = new Person(1L, "jan", "mucha", "krakow", "email1@onet.com", "Programing", "Developer");
         Mockito.when(personRepository.save(person1))
-               .thenReturn(person1);
+                .thenReturn(person1);
 
         personService.addPerson(mapper.map(person1, PersonDto.class));
         Mockito.verify(personRepository, times(1))
-               .save(person1);
+                .save(person1);
     }
 
     @Test
@@ -95,20 +95,20 @@ public class PersonServiceTest {
         Person person1 = new Person(1L, "jan", "mucha", "warszawa", "email1@onet.com", "Programing", "Developer");
 
         Mockito.when(personRepository.save(person1))
-               .thenReturn(person1);
+                .thenReturn(person1);
         Mockito.when(personRepository.findById(1L))
-               .thenReturn(Optional.of(person1));
+                .thenReturn(Optional.of(person1));
         Mockito.when(personRepository.getOne(1L))
-               .thenReturn(person1);
+                .thenReturn(person1);
 
         personService.updatePersonById(1L, mapper.map(person1, PersonDto.class));
 
         Mockito.verify(personRepository, times(1))
-               .save(person1);
+                .save(person1);
         Mockito.verify(personRepository, times(1))
-               .findById(1L);
+                .findById(1L);
         Mockito.verify(personRepository, times(1))
-               .getOne(1L);
+                .getOne(1L);
     }
 
 }

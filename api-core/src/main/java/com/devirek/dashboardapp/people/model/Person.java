@@ -61,7 +61,7 @@ public class Person implements Serializable {
     }
 
     public Person(Long id, String firstName, String lastName, String location, String email, String status,
-                  String role) {
+            String role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -168,7 +168,7 @@ public class Person implements Serializable {
         Person person = (Person) o;
         return getId() == person.getId() && Objects.equals(getFirstName(), person.getFirstName()) && Objects.equals(
                 getLastName(), person.getLastName()) && Objects.equals(getLocation(),
-                                                                       person.getLocation()) && Objects.equals(
+                person.getLocation()) && Objects.equals(
                 getEmail(), person.getEmail()) && Objects.equals(getStatus(), person.getStatus()) && Objects.equals(
                 getRole(), person.getRole()) && Objects.equals(createdOn, person.createdOn) && Objects.equals(
                 getModifiedOn(), person.getModifiedOn());
@@ -178,7 +178,7 @@ public class Person implements Serializable {
     public int hashCode() {
 
         return Objects.hash(getId(), getFirstName(), getLastName(), getLocation(), getEmail(), getStatus(), getRole(),
-                            createdOn, getModifiedOn());
+                createdOn, getModifiedOn());
     }
 
     @Override

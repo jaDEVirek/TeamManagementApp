@@ -7,7 +7,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 import src.main.java.com.devirek.dashboardapp.security.repository.IUserRepository;
@@ -23,7 +22,6 @@ import java.util.Objects;
 import java.util.Optional;
 
 
-@Component
 public class AuthTokenFilter extends OncePerRequestFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
@@ -56,7 +54,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-                                    FilterChain filterChain) throws ServletException, IOException {
+            FilterChain filterChain) throws ServletException, IOException {
         try {
 
             Optional<String> jWebToken = parseJwt(request);
@@ -92,9 +90,8 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
         String authorizationHeader = request.getHeader("Authorization");
         if (StringUtils.hasText(authorizationHeader) && authorizationHeader.startsWith("Bearer")) {
-            return Optional.of(authorizationHeader.substring(7, authorizationHeader.length()));
+            return Optional.of(authorizationHeader.substring(7));
         }
-        ;
         return Optional.empty();
     }
 }

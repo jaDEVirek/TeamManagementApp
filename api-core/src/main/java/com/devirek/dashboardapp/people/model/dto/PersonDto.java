@@ -20,7 +20,7 @@ public class PersonDto implements Serializable {
     }
 
     public PersonDto(Long id, String firstName, String lastName, String email, String location, String status,
-                     String role) {
+            String role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -97,11 +97,11 @@ public class PersonDto implements Serializable {
         if (!(o instanceof PersonDto)) return false;
         PersonDto personDto = (PersonDto) o;
         return Objects.equals(getId(), personDto.getId()) && Objects.equals(getFirstName(),
-                                                                            personDto.getFirstName()) && Objects.equals(
+                personDto.getFirstName()) && Objects.equals(
                 getLastName(), personDto.getLastName()) && Objects.equals(getEmail(),
-                                                                          personDto.getEmail()) && Objects.equals(
+                personDto.getEmail()) && Objects.equals(
                 getLocation(), personDto.getLocation()) && Objects.equals(getStatus(),
-                                                                          personDto.getStatus()) && Objects.equals(
+                personDto.getStatus()) && Objects.equals(
                 getRole(), personDto.getRole());
     }
 

@@ -54,7 +54,7 @@ public class PersonService {
     public Optional<PersonDto> findById(Long id) {
         Assert.notNull(id, "id can't be null");
         return personRepository.findById(id)
-                               .map(p -> modelMapper.map(p, PersonDto.class));
+                .map(p -> modelMapper.map(p, PersonDto.class));
 
     }
 
@@ -80,7 +80,7 @@ public class PersonService {
     public PersonDto addPerson(PersonDto personDto) {
         Assert.notNull(personDto, "Object can't be null!");
         try {
-            Assert.notNull(personDto.getFirstName());
+            Assert.notNull(personDto.getFirstName(), "Person must have Name! ");
             Person save = personRepository.save(modelMapper.map(personDto, Person.class));
             return modelMapper.map(save, PersonDto.class);
         } catch (Exception e) {
@@ -100,17 +100,17 @@ public class PersonService {
         Assert.notNull(id, "id can't be null");
         Assert.notNull(personDto, "personDto can't be null");
         personRepository.findById(id)
-                        .map(person -> {
-                            Person personEntity = personRepository.getOne(id);
-                            personEntity.setFirstName(personDto.getFirstName());
-                            personEntity.setLastName(personDto.getLastName());
-                            personEntity.setLocation(personDto.getLocation());
-                            personEntity.setEmail(personDto.getEmail());
-                            personEntity.setRole(personDto.getRole());
-                            personEntity.setStatus(personDto.getStatus());
-                            return personRepository.save(personEntity);
-                        })
-                        .orElseThrow(NoSuchElementException::new);
+                .map(person -> {
+                    Person personEntity = personRepository.getOne(id);
+                    personEntity.setFirstName(personDto.getFirstName());
+                    personEntity.setLastName(personDto.getLastName());
+                    personEntity.setLocation(personDto.getLocation());
+                    personEntity.setEmail(personDto.getEmail());
+                    personEntity.setRole(personDto.getRole());
+                    personEntity.setStatus(personDto.getStatus());
+                    return personRepository.save(personEntity);
+                })
+                .orElseThrow(NoSuchElementException::new);
     }
 
     /**
@@ -132,18 +132,18 @@ public class PersonService {
         List<Person> people = personRepository.findByTeamsNotEmpty();
 
         return people.stream()
-                     .map(person -> {
-                         PersonWithTeamsDto dto = modelMapper.map(person, PersonWithTeamsDto.class);
-                         dto.setTeams(mapTeams(person));
-                         return dto;
-                     })
-                     .collect(Collectors.toList());
+                .map(person -> {
+                    PersonWithTeamsDto dto = modelMapper.map(person, PersonWithTeamsDto.class);
+                    dto.setTeams(mapTeams(person));
+                    return dto;
+                })
+                .collect(Collectors.toList());
     }
 
     private Set<TeamDto> mapTeams(Person person) {
         return person.getTeams()
-                     .stream()
-                     .map(t -> modelMapper.map(t, TeamDto.class))
-                     .collect(Collectors.toSet());
+                .stream()
+                .map(t -> modelMapper.map(t, TeamDto.class))
+                .collect(Collectors.toSet());
     }
 }

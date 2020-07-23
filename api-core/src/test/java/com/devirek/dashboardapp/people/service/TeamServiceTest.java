@@ -48,8 +48,8 @@ public class TeamServiceTest {
 
         List<TeamDto> resultTeamDtos = teamService.findAll();
         assertThat(resultTeamDtos).extracting("name", "description", "city", "headcount")
-                                  .contains(tuple("Name1", "description1", "city1", 2),
-                                            tuple("Name2", "description2", "city2", 5));
+                .contains(tuple("Name1", "description1", "city1", 2),
+                        tuple("Name2", "description2", "city2", 5));
     }
 
     @Test
@@ -60,9 +60,9 @@ public class TeamServiceTest {
         Optional<TeamDto> teamById = teamService.findTeamById(1l);
 
         assertThat(teamById.get()
-                           .getId()).isEqualTo(1l);
+                .getId()).isEqualTo(1l);
         assertThat(team1.getCity()).isEqualTo(teamById.get()
-                                                      .getCity());
+                .getCity());
     }
 
     @Test
@@ -70,7 +70,7 @@ public class TeamServiceTest {
         when(teamRepository.findById(null)).thenThrow(new IllegalArgumentException("An argument is missing ! "));
 
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> teamService.findTeamById(null))
-                                                                 .withMessage("ID must exist ");
+                .withMessage("ID must exist ");
     }
 
     @Test
@@ -87,7 +87,7 @@ public class TeamServiceTest {
         Team team1 = new Team(1l, "Name1", "description1", "city1", 2);
 
         Mockito.when(teamRepository.save(team1))
-               .thenReturn(team1);
+                .thenReturn(team1);
         teamService.createTeam(mapper.map(team1, TeamDto.class));
 
         verify(teamRepository, times(1)).save(team1);
@@ -98,7 +98,7 @@ public class TeamServiceTest {
         when(teamRepository.save(null)).thenThrow(new IllegalArgumentException());
 
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> teamService.createTeam(null))
-                                                                 .withMessage("Object can't be null!");
+                .withMessage("Object can't be null!");
     }
 
     @Test
@@ -111,19 +111,19 @@ public class TeamServiceTest {
     @Test
     public void shouldNotDeleteTeamById() {
         doThrow(new IllegalArgumentException()).when(teamRepository)
-                                               .deleteById(null);
+                .deleteById(null);
 
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> teamService.deleteTeamById(null))
-                                                                 .withMessage("Id can't be null !");
+                .withMessage("Id can't be null !");
     }
 
     @Test
     public void shouldNotDeleteWhenTeamNotExist() {
         doThrow(new IllegalStateException()).when(teamRepository)
-                                            .deleteById(11l);
+                .deleteById(11l);
 
         assertThatExceptionOfType(IllegalStateException.class).isThrownBy(() -> teamService.deleteTeamById(11l))
-                                                              .withMessage("Team with given id, does not exist ! ");
+                .withMessage("Team with given id, does not exist ! ");
     }
 
     @Test
@@ -151,13 +151,13 @@ public class TeamServiceTest {
 
         assertThatExceptionOfType(NoEntityFoundException.class).isThrownBy(
                 () -> teamService.updateTeamById(1l, teamDto))
-                                                               .withMessage(
-                                                                       "There is no Entity in database with given id.");
+                .withMessage(
+                        "There is no Entity in database with given id.");
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(
                 () -> teamService.updateTeamById(null, teamDto))
-                                                                 .withMessage("Id can't be null ! ");
+                .withMessage("Id can't be null ! ");
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> teamService.updateTeamById(2l, null))
-                                                                 .withMessage("Object can't be null!");
+                .withMessage("Object can't be null!");
     }
 
     private void initMockServiceTest() {

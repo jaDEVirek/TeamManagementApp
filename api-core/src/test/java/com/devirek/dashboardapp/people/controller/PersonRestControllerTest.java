@@ -42,7 +42,7 @@ public class PersonRestControllerTest {
     @Before
     public void initTest() {
         mockMvc = MockMvcBuilders.standaloneSetup(new PersonRestController(personService))
-                                 .build();
+                .build();
         objectMapper = new ObjectMapper();
     }
 
@@ -52,28 +52,28 @@ public class PersonRestControllerTest {
         when(personService.findAll()).thenReturn(Collections.singletonList(personDto));
 
         mockMvc.perform(get("/people"))
-               .andExpect(status().isOk())
-               .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-               .andExpect(jsonPath("$[0].id").value(personDto.getId()))
-               .andExpect(jsonPath("$[0].firstName").value(personDto.getFirstName()))
-               .andExpect(jsonPath("$[0].lastName").value(personDto.getLastName()))
-               .andExpect(jsonPath("$[0].location").value(personDto.getLocation()))
-               .andExpect(jsonPath("$[0].email").value(personDto.getEmail()))
-               .andExpect(jsonPath("$[0].status").value(personDto.getStatus()))
-               .andExpect(jsonPath("$[0].role").value(personDto.getRole()));
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$[0].id").value(personDto.getId()))
+                .andExpect(jsonPath("$[0].firstName").value(personDto.getFirstName()))
+                .andExpect(jsonPath("$[0].lastName").value(personDto.getLastName()))
+                .andExpect(jsonPath("$[0].location").value(personDto.getLocation()))
+                .andExpect(jsonPath("$[0].email").value(personDto.getEmail()))
+                .andExpect(jsonPath("$[0].status").value(personDto.getStatus()))
+                .andExpect(jsonPath("$[0].role").value(personDto.getRole()));
     }
 
     @Test
     public void shouldGetPersonById() throws Exception {
         Long testId = 2L;
         PersonDto personDto = new PersonDto(testId, "Adam", "Kowalski", "kowalski@oo2.pl", "Krawko", "Active",
-                                            "Manager");
+                "Manager");
         when(personService.findById(testId)).thenReturn(Optional.of(personDto));
 
         mockMvc.perform(get("/people/" + personDto.getId()))
-               .andExpect(status().isOk())
-               .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-               .andExpect(jsonPath("$.id").value(personDto.getId()));
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$.id").value(personDto.getId()));
 
     }
 
@@ -81,50 +81,50 @@ public class PersonRestControllerTest {
     public void shouldDeletePersonById() throws Exception {
         when(personService.deletePerson(isA(Long.class))).thenReturn(Optional.empty());
         mockMvc.perform(delete("/people/{id}", 1L))
-               .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void shouldNotDeletePersonByGivenId() throws Exception {
         Mockito.doThrow(new NoEntityFoundException())
-               .when(personService)
-               .deletePerson(1L);
+                .when(personService)
+                .deletePerson(1L);
         mockMvc.perform(delete("/people/{id}"))
-               .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest());
     }
 
     @Test
     public void shouldUpdatePersonById() throws Exception {
         PersonDto person = new PersonDto(1L, "Bob", "Noob", "mail@first.pl", "Warszawa", "APPS", "Developer");
         mockMvc.perform(put("/people/{id}", 2l).contentType(MediaType.APPLICATION_JSON)
-                                               .content(objectMapper.valueToTree(person)
-                                                                    .toString()))
-               .andExpect(status().isOk());
+                .content(objectMapper.valueToTree(person)
+                        .toString()))
+                .andExpect(status().isOk());
     }
 
     @Test
     public void shouldNotUpdatePersonByPutRequest() throws Exception {
         PersonDto personDto = new PersonDto(1L, "Bob", "Noob", "mail@first.pl", "Warszawa", "APPS", "Developer");
         Mockito.doThrow(new NoEntityFoundException())
-               .when(personService)
-               .updatePersonById(1l, personDto);
+                .when(personService)
+                .updatePersonById(1l, personDto);
 
         mockMvc.perform(put("/people/{id}", 1).contentType(MediaType.APPLICATION_JSON)
-                                              .content(objectMapper.valueToTree(personDto)
-                                                                   .toString()))
-               .andExpect(status().isNotFound());
+                .content(objectMapper.valueToTree(personDto)
+                        .toString()))
+                .andExpect(status().isNotFound());
     }
 
     @Test
     public void shouldSavePersonInDatabase() throws Exception {
         PersonDto personDto = new PersonDto(1L, "Bob", "Noob", "mail@first.pl", "Warszawa", "APPS", "Developer");
         doReturn(new ModelMapper().map(personDto, PersonDto.class)).when(personService)
-                                                                   .addPerson(personDto);
+                .addPerson(personDto);
 
         mockMvc.perform(post("/people").contentType(MediaType.APPLICATION_JSON)
-                                       .content(objectMapper.valueToTree(personDto)
-                                                            .toString()))
-               .andExpect(status().isOk());
+                .content(objectMapper.valueToTree(personDto)
+                        .toString()))
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -135,9 +135,9 @@ public class PersonRestControllerTest {
         personService.addPerson(any());
 
         mockMvc.perform(post("/people").contentType(MediaType.APPLICATION_JSON)
-                                       .content(objectMapper.valueToTree(personDto)
-                                                            .toString()))
-               .andReturn();
+                .content(objectMapper.valueToTree(personDto)
+                        .toString()))
+                .andReturn();
     }
 
     @Test
@@ -148,15 +148,15 @@ public class PersonRestControllerTest {
         when(personService.findNotAssignedPeople()).thenReturn(Collections.singletonList(personDto));
 
         mockMvc.perform(get("/people/unassigned"))
-               .andExpect(status().isOk())
-               .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-               .andExpect(jsonPath("$[0].id").value(personDto.getId()))
-               .andExpect(jsonPath("$[0].firstName").value(personDto.getFirstName()))
-               .andExpect(jsonPath("$[0].lastName").value(personDto.getLastName()))
-               .andExpect(jsonPath("$[0].location").value(personDto.getLocation()))
-               .andExpect(jsonPath("$[0].email").value(personDto.getEmail()))
-               .andExpect(jsonPath("$[0].status").value(personDto.getStatus()))
-               .andExpect(jsonPath("$[0].role").value(personDto.getRole()));
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$[0].id").value(personDto.getId()))
+                .andExpect(jsonPath("$[0].firstName").value(personDto.getFirstName()))
+                .andExpect(jsonPath("$[0].lastName").value(personDto.getLastName()))
+                .andExpect(jsonPath("$[0].location").value(personDto.getLocation()))
+                .andExpect(jsonPath("$[0].email").value(personDto.getEmail()))
+                .andExpect(jsonPath("$[0].status").value(personDto.getStatus()))
+                .andExpect(jsonPath("$[0].role").value(personDto.getRole()));
     }
 
 }

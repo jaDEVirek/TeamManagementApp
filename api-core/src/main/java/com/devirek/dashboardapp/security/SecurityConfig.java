@@ -3,7 +3,9 @@ package src.main.java.com.devirek.dashboardapp.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -17,23 +19,31 @@ import src.main.java.com.devirek.dashboardapp.security.service.UserDetailsServic
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    private JwtAuthEntryPoint unauthorizedHandler;
+    private final JwtAuthEntryPoint unauthorizedHandler;
 
-    private UserDetailsServiceImpl userDetailsService;
+    private final UserDetailsServiceImpl userDetailsService;
 
     @Autowired
-    public SecurityConfig(UserDetailsServiceImpl userDetailsService, JwtAuthEntryPoint unauthorizedHandler) {
+    public SecurityConfig(UserDetailsServiceImpl userDetailsService,
+            JwtAuthEntryPoint unauthorizedHandler) {
         this.unauthorizedHandler = unauthorizedHandler;
         this.userDetailsService = userDetailsService;
     }
 
     @Override
-    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+    public void configure(
+            AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder.userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
+    }
+
+    @Bean
+    public AuthenticationManager getAuthenticationManager() throws Exception {
+        return authenticationManager();
     }
 
     @Bean
@@ -65,6 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated();
 
-        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(authenticationJwtTokenFilter(),
+                UsernamePasswordAuthenticationFilter.class);
     }
 }
