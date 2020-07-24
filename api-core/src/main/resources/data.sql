@@ -7,3 +7,6 @@ INSERT INTO Team(version ,name,description,Creation_time,Modification_time,city)
 --INSERT INTO Team(version ,name,description,Creation_time,Modification_time,city) VALUES (1,'Apacze','grupa programistow',parsedatetime('17-09-2012 18:47:52.69', 'dd-MM-yyyy hh:mm:ss.SS'),null,'Warszawa');
 --INSERT INTO Team(version ,name,description,Creation_time,Modification_time,city) VALUES (1,'Apacze','grupa programistow',parsedatetime('17-09-2012 18:47:52.69', 'dd-MM-yyyy hh:mm:ss.SS'),null,'Kraków');
 --INSERT INTO persons_teams(person_id , team_id) VALUES (3,3)
+INSERT INTO roles(name) VALUES('ROLE_USER');
+INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
+INSERT INTO roles(name) VALUES('ROLE_ADMIN');

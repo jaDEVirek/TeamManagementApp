@@ -10,7 +10,7 @@ public class Role {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 20)
+    @Column(length = 20,name = "name")
     private EnumRole roleName;
 
     public Role() {
